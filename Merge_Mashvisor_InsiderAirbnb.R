@@ -1,10 +1,10 @@
 library(reshape)
 library(fastDummies)
 ##### Read in files 
-Crime <- read.csv("Census/Crime_Reports_2018.csv")
-Neighboorhood <- read.csv("Census/Neigborhood.csv", stringsAsFactors = F)
-Mashvisor <- read.csv("Mashvisor_Json/All.csv")
-InsiderAirbnb <- read.csv("InsiderAirbnb/listing.detailed.clean.csv")
+Crime <- read.csv("Crime_Reports_2018.csv.gz")
+Neighboorhood <- read.csv("Neigborhood.csv", stringsAsFactors = F)
+Mashvisor <- read.csv("All.csv")
+InsiderAirbnb <- read.csv("listing.detailed.clean.csv.gz")
 
 ##### Aggregate Crime data
 Crime_Agg_By_ZipCode_Category = aggregate(Crime$Zip.Code, by = list(Crime$Zip.Code, Crime$Highest.Offense.Description), length)
