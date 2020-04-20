@@ -35,5 +35,11 @@ All amenities in the aribnb were converted into category data.
 
 After all of these, we combined the census, crime data with Airbnb and Mashvisor data through zipcode. All cleaning procedures were finished in R. 
 
+### Dependency
+R library:
+
+library:reshape
+
+library:fastDummies
 ## Model 1
 ## Model 2
