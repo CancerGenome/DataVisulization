@@ -1,26 +1,24 @@
 # CSE6242_GroupProject
 ## Processing Data
 ### Download
-Insider Airbnb:  http://insideairbnb.com/get-the-data.html
-Mashvisor: Postman_Mashvisor API.docx
-Census: 
-Crime data:
+In total, we downloaded four different datasets: 
+Airbnb renting information from Insider Airbnb;
+On sale property from Mashvisor;
+Census information and detailed Crime data from Census American Community Survey (ACS);
+
+The on-sale property was downloaded through Mashvisor API and all other datasets are available for direct download. 
 
 
-### Integration
-Convert Mashvisor Json to csv with json2csv and define the selected field with the following command line.
-Problems: region1 and 5 are one line json file and json2csv can recognize;
-Region 3 have additional comma after each json file, should remove first;
-Region 6 have removed content header, therefore we should remove all content_ in following command line;
-For all files, replace all \<p\>\<\/p\> \r and \n to avoid malformatted results;
+### Data Cleaning and Integration
+We cleaned, converted, and integrate our dataset through following steps:
+The crime data were aggregated by zip code and total crime number was reported for each zip code;
+The census data was converted to binary by comparing it with the global median value. 1 means higher, otherwise 0. 
+The census zipcode were converted to category dataset. 
+Convert Mashvisor Json to csv with json2csv and define the selected field to output
+All binary data were converted into 1/0. 
+All amenities in the aribnb were converted into category data.
 
-Merge all census and mashvisor and InsiderAirbnb with in-house R-script (see below). 
-Have prepared a detailed subtype list for crime, but didn’t add to our final CSV because possible overwhelming columns (300+ more columns)
-
-### Data Cleaning
-
-Clean the data and binary or categorize the dataset, with the reference from Mashvisor. See comments for header and find the solution for each dataset. All red labelled headers are selected for next step analysis. 
-
+After all of these, we combined the census, crime data with Airbnb and Mashvisor data through zipcode. All cleaning procedures were finished in R. 
 
 ## Model 1
 ## Model 2
