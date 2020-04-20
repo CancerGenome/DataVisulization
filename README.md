@@ -1,4 +1,28 @@
 # CSE6242_GroupProject
 ## Processing Data
+###Download
+Insider Airbnb:  http://insideairbnb.com/get-the-data.html
+Mashvisor: Postman_Mashvisor API.docx
+Census: 
+Crime data:
+
+
+###Integration
+Convert Mashvisor Json to csv with json2csv and define the selected field with the following command line.
+Problems: region1 and 5 are one line json file and json2csv can recognize;
+Region 3 have additional comma after each json file, should remove first;
+Region 6 have removed content header, therefore we should remove all content_ in following command line;
+For all files, replace all <p></p> \r and \n to avoid malformatted results;
+
+Merge all census and mashvisor and InsiderAirbnb with in-house R-script (see below). 
+Have prepared a detailed subtype list for crime, but didn’t add to our final CSV because possible overwhelming columns (300+ more columns)
+
+###Data Cleaning
+
+Clean the data and binary or categorize the dataset, with the reference from Mashvisor. See comments for header and find the solution for each dataset. All red labelled headers are selected for next step analysis. 
+
+Command line json2csv
+json2csv -i $INPUT --flatten-objects  -v '.' --flatten-separator "_" --flatten-arrays  -f content_stateInterest_state,content_stateInterest_thirtyYearFixed,content_stateInterest_thirtyYearFixedCount,content_stateInterest_fifteenYearFixed,content_stateInterest_fifteenYearFixedCount,content_stateInterest_fiveOneARM,content_stateInterest_fiveOneARMCount,content_isShortSale,content_source,content_yearBuilt,content_nextOpenHouseEndTime,content_sqft,content_lastSaleDate,content_id,content_state,content_county,content_longitude,content_zip,content_image_image,content_image_url,content_image_width,content_image_height,content_virtual_tours_0,content_tax,content_mls_id,content_ROI_traditional_ROI,content_ROI_traditional_rental,content_ROI_airbnb_rental,content_ROI_airbnb_cap_rate,content_ROI_airbnb_ROI,content_ROI_traditional_cap_rate,content_daysOnMarket,content_meta_metaKey,content_meta_value,content_neighborhood_country,content_neighborhood_image,content_neighborhood_city,content_neighborhood_singleHomeValue,content_neighborhood_mashMeter,content_neighborhood_latitude,content_neighborhood_description,content_neighborhood_singleHomeValue_formatted,content_neighborhood_is_village,content_neighborhood_mashMeter_formatted,content_neighborhood_name,content_neighborhood_id,content_neighborhood_state,content_neighborhood_longitude,content_neighborhood_walkscore,content_neighborhood_airbnb_properties_count,content_neighborhood_traditional_properties_count,content_homeType,content_property_type,content_property_sub_type,content_beds,content_num_of_units,content_favorite,content_status,content_city,content_saleType,content_latitude,content_description,content_nextOpenHouseDate,content_recentReductionDate,content_title,content_rent_appreciation_rate,content_originalListPrice,content_parkingSpots,content_parkingType,content_address,content_nextOpenHouseStartTime,content_lotSize,content_broker_name,content_broker_number,content_broker_url,content_url,content_baths,content_address_revealing,content_location,content_interested,content_listPrice,content_price_per_sqft,content_lastSalePrice,content_is_foreclosure,content_foreclosure_status,content_occupancy_status,content_owner_occupied,content_listing_date,content_heating_system,content_cooling_system,content_mls_name,content_walkscore,content_investment_likelihood_label,content_investment_likelihood_score,content_hoa_dues,content_view_type,content_parcel_number,content_architecture_style,content_has_pool,content_is_water_front,content_needs_repair,content_tenant_occupied,content_is_market_place,content_schools_0_category,content_schools_0_name,content_schools_0_district,content_schools_1_category,content_schools_1_name,content_schools_1_district,content_schools_2_category,content_schools_2_name,content_schools_2_district,content_schools_3_category,content_schools_3_name,content_schools_3_district,content_modification_timestamp,content_created_at,content_updated_ar,content_updated_at,content_owner_first_name,content_owner_last_name,content_agents_0_id,content_agents_0_office_id
+
 ## Model 1
 ## Model 2
