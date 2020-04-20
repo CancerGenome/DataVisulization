@@ -41,6 +41,3 @@ R library:
 reshape
 
 fastDummies
-
-## Model 1
-## Model 2
