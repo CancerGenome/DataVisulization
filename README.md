@@ -7,7 +7,7 @@ Airbnb renting information from [Insider Airbnb](http://insideairbnb.com/get-the
 
 On sale property from [Mashvisor](https://www.mashvisor.com/);
 
-Census information and detailed Crime data from Census [American Community Survey ACS] (https://www.census.gov/programs-surveys/acs/data.html) and [CDE] (https://crime-data-explorer.fr.cloud.gov/downloads-and-docs);
+Census information and detailed Crime data from Census [American Community Survey ACS](https://www.census.gov/programs-surveys/acs/data.html) and [CDE](https://crime-data-explorer.fr.cloud.gov/downloads-and-docs);
 
 The on-sale property was downloaded through Mashvisor API and all other datasets are available for direct download. 
 
