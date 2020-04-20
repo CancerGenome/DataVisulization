@@ -12,7 +12,7 @@ Census information and detailed Crime data from Census [American Community Surve
 The on-sale property was downloaded through Mashvisor API and all other datasets are available for direct download. 
 
 ### Download Mashvisor data
-We first explored all on-sale property and their home ID from Mashvisor. Then we downloded all information through API with the command below. (Caveat: we registered first to get the api key and each api key only have  
+We first explored all on-sale property and their home ID from Mashvisor. Then we downloded all information through API with the command below. (Caveat: we registered first to get the api key and each api key only have 100 times to download)
 
 ```bash
 curl --location --request GET "https://api.mashvisor.com/v1.1/client/property?id=$ID&state=TX" --header "x-api-key: 3e2c07a8-ce42-48cb-bd29-6ad797326a0e 
