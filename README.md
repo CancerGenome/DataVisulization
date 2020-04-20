@@ -3,14 +3,20 @@
 ### Download
 In total, we downloaded four different datasets: 
 
-Airbnb renting information from Insider Airbnb;
+Airbnb renting information from [Insider Airbnb](http://insideairbnb.com/get-the-data.html) ;
 
-On sale property from Mashvisor;
+On sale property from [Mashvisor](https://www.mashvisor.com/);
 
-Census information and detailed Crime data from Census American Community Survey (ACS);
+Census information and detailed Crime data from Census [American Community Survey ACS] (https://www.census.gov/programs-surveys/acs/data.html) and [CDE] (https://crime-data-explorer.fr.cloud.gov/downloads-and-docs);
 
 The on-sale property was downloaded through Mashvisor API and all other datasets are available for direct download. 
 
+### Download Mashvisor
+We first explored all on-sale property and their home ID from Mashvisor. Then we downloded all information through API with 
+
+```bash
+curl --location --request GET "https://api.mashvisor.com/v1.1/client/property?id=$ID&state=TX" --header "x-api-key: 3e2c07a8-ce42-48cb-bd29-6ad797326a0e 
+```
 
 ### Data Cleaning and Integration
 We cleaned, converted, and integrate our dataset through following steps:
