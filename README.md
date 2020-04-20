@@ -12,7 +12,7 @@ Convert Mashvisor Json to csv with json2csv and define the selected field with t
 Problems: region1 and 5 are one line json file and json2csv can recognize;
 Region 3 have additional comma after each json file, should remove first;
 Region 6 have removed content header, therefore we should remove all content_ in following command line;
-For all files, replace all <p></p> \r and \n to avoid malformatted results;
+For all files, replace all \<p\>\<\/p\> \r and \n to avoid malformatted results;
 
 Merge all census and mashvisor and InsiderAirbnb with in-house R-script (see below). 
 Have prepared a detailed subtype list for crime, but didn’t add to our final CSV because possible overwhelming columns (300+ more columns)
