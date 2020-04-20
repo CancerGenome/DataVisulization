@@ -2,8 +2,11 @@
 ## Processing Data
 ### Download
 In total, we downloaded four different datasets: 
+
 Airbnb renting information from Insider Airbnb;
+
 On sale property from Mashvisor;
+
 Census information and detailed Crime data from Census American Community Survey (ACS);
 
 The on-sale property was downloaded through Mashvisor API and all other datasets are available for direct download. 
