@@ -38,8 +38,9 @@ After all of these, we combined the census, crime data with Airbnb and Mashvisor
 ### Dependency
 R library:
 
-library:reshape
+reshape
 
-library:fastDummies
+fastDummies
+
 ## Model 1
 ## Model 2
