@@ -1,0 +1,1 @@
+By using the log scale and square root , you will be easier to observe the dataset difference across different years, especially when you dataset have a large range. 

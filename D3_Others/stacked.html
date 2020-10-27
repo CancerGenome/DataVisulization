@@ -1,0 +1,263 @@
+<html>
+<head>
+<meta charset ="utf-8">
+<!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+<script type="text/javascript" src="../lib/d3.v5.min.js"></script>
+<style>
+
+path.link { fill: none; stroke: #666; stroke-width: 1.5px; } 
+circle { fill: #FFC300; stroke: #FFC300; stroke: #FFC300; stroke-width: 1.5px; }
+text { fill: #000; font: 10px sans-serif; pointer-events: none; } 
+body {font-family: sans-serif; color: #444; width: 650px;}
+.line {fill: none; stroke: #ffab00; stroke-width: 3;  }
+.linefive {fill: none; stroke: #FFC300; stroke-width: 3;  }
+.dot {fill:#FFC300; stroke: #FFC300; stroke-width: 1.5;}
+.linesix {fill: none; stroke: #FF5733; stroke-width: 3;  }
+.tri {fill: #FF5733; stroke: #FF5733; stroke-width: 3;}
+.lineseven {fill: none; stroke: #C70039; stroke-width: 3;  }
+.dia {fill:#C70039; stroke:#C70039; stroke: 3;}
+.lineeight {fill: none; stroke: #900C3F; stroke-width: 3;  }
+.bar { fill: #900C3F; stroke: #900C3F; stroke: #900C3F; stroke-width: 1.5px; }
+
+.xlabel  {font-size: 25px;}
+.ylabel  {font-size: 25px;}
+.axis path,
+.axis line {  fill: none;  stroke: #000;  shape-rendering: crispEdges;}
+.axis text {  font-size: 15px;}
+
+</style>
+</head>
+
+<body>
+
+<svg id="chart" width="650" height="400"></svg>
+
+Select year: 
+<select id="year"></select>
+
+<script>
+
+d3.csv("earthquake.csv").then(function(csv){
+
+    // get all three earthquark level 
+    var keys = csv.columns.slice(2); 
+    // console.log(keys)
+
+    var year   = [...new Set(csv.map(function(d){return d.Year}))]
+    console.log(year)
+	var states = [...new Set(csv.map(function(d){return d.State}))]
+    // console.log(states)
+
+    var height  = 500;
+    var width   = 700;
+    var margin = {top: 50, right: 50, bottom: 50, left: 50};
+
+    width  =    width - margin.left - margin.right;
+    height =    height - margin.top - margin.bottom;
+
+    var svg = d3.select('body').append("svg")
+    .attr("width",  width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    
+	var x = d3.scaleBand()
+		.range([margin.left, width + margin.left])
+		.padding(0.2)
+
+	var y = d3.scaleLinear()
+		.rangeRound([height - margin.bottom, margin.top])
+
+	var xAxis = svg.append("g")
+		.attr("transform", `translate(0,${height - margin.top})`)
+		.attr("class", "x-axis")
+
+	var yAxis = svg.append("g")
+		.attr("transform", `translate(${margin.left},0)`)
+		.attr("class", "y-axis")
+
+	var color = d3.scaleOrdinal()
+		.range(["#b33040", "#d25c4d", "#f2b447"])
+// Add title
+
+  svg.append("text")
+      // .attr("class", "xlabel")
+      .attr("text-anchor", "middle")
+      .attr("x", (width/2 + margin.left) )
+      .attr("y", margin.bottom/2 * -1 )
+      .text("Visualizing Earthquake Counts by State")
+      .style("font-size", 20);
+
+// Add X and Y label
+
+    svg.append("text")
+      .attr("class", "xlabel")
+      .attr("text-anchor", "middle")
+      .attr("x", (width/2)+ margin.left)
+      .attr("y", height   )
+      .text("State")
+      .style("font-size", 15);
+  
+    svg.append("text")
+      .attr("class", "ylabel")
+      .attr("text-anchor", "middle")
+      .attr("x", margin.left/2-200)
+      .attr("y", height/2-200)
+      // .attr("y", 25)
+      // .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text("Num of Earthquakes")
+      .style("font-size", 15);
+      // .text("Count")
+    // Add legend 
+    var w = 20;
+    var h = 15;
+    svg.append("circle")
+        .attr("cx",width)
+        .attr("cy",height * 0.05)
+        .attr("r", 6)
+        .style("fill", "#b33040")
+    svg.append("circle")
+        .attr("cx",width)
+        .attr("cy",height * 0.1)
+        .attr("r", 6)
+        .style("fill", "#d25c4d")
+    svg.append("circle")
+        .attr("cx",width)
+        .attr("cy",height * 0.15)
+        .attr("r", 6)
+        .style("fill", "#f2b447")
+    svg.append("text")
+        .attr("x",width + w/2 )
+        .attr("y",height * 0.05 )
+        .text("7.0+")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+    svg.append("text")
+        .attr("x",width + w/2 )
+        .attr("y",height * 0.1 )
+        .text("6_6.9")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+    svg.append("text")
+        .attr("x",width + w/2 )
+        .attr("y",height * 0.15 )
+        .text("5_5.9")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+
+        // Add name 
+    svg.append("text")
+      .attr("class", "xlabel")
+      .attr("text-anchor", "middle")
+      .attr("x", width-15)
+      .attr("y", height + margin.bottom -10 )
+      .text("ywang3564")
+      .style("font-size",15); 
+
+
+// var data = ["Option 1", "Option 2", "Option 3"];
+
+// var select = d3.select('body')
+//     .append('select')
+//     .attr('class','select')
+//     .on('change',display(this.value))
+
+    var select = d3.select("#year")
+		.on("change", function() {
+			display(this.value)
+        })
+    
+    var options = d3.select("#year").selectAll("option")
+		.data(year)
+        .enter()
+        .append("option")
+    	.text(function(d){return d })
+    
+    display(d3.select("#year").property("value"))
+
+	function display(input) {
+        // Filter data first, 
+        var data = csv.filter(function(d){
+            return d.Year == input
+        })
+
+        // define the X and Y axis 
+        
+        x.domain(data.map(function(d){
+            return d.State
+        }));
+
+		svg.selectAll(".x-axis").transition()
+            .call(d3.axisBottom(x).tickSizeOuter(0))
+        
+        var maxY = d3.max(data, function(d){
+            return d3.sum(keys, function(i){
+                return +d[i]
+            })
+        })
+        // console.log(maxY)
+		y.domain([0, maxY]).nice();
+
+        svg.selectAll(".y-axis")
+            .transition()
+            .call(d3.axisLeft(y)
+            .ticks(null, "s"))
+
+// https://www.d3-graph-gallery.com/graph/barplot_stacked_basicWide.html
+// reference: https://bl.ocks.org/LemoNode/5a64865728c6059ed89388b5f83d6b67
+		var group = svg.selectAll("g.layer")
+            .data(d3.stack()
+            .keys(keys)(data), function(d){
+                return d.key
+            })
+        // console.log(group)
+        
+        group.enter().append("g")
+			.classed("layer", true)
+			.attr("fill", function(d){
+                return color(d.key)
+                // console.log(color(d.key))
+            })
+
+        var bars = svg.selectAll("g.layer")
+            .selectAll("rect")
+            .data(d => d);
+            // console.log(data)
+
+		bars.enter().append("rect")
+			.merge(bars)
+		    .transition()
+			.attr("x", function(d){return x(d.data.State);})
+			.attr("y", function(d){return y(d[1])})
+            .attr("height", function(d){return y(d[0])-y(d[1])})
+            .attr("width", x.bandwidth())
+
+        
+            // Add total for each category
+        data.forEach(function(d) {
+            d.total = d3.sum(keys, function(i){ //interation all samples, and return sum value
+                return +d[i]
+            })
+            // console.log(d.total)
+			return d
+		})
+		var text = svg.selectAll(".text")
+			.data(data, function(d){return d.State})
+        
+        var w = x.bandwidth()/2; // this is shifting position for X
+        var h = 10; // for Y
+		text.enter().append("text")
+			.attr("class", "text")
+			.attr("text-anchor", "middle")
+            .merge(text)
+			.attr("x", function(d){return x(d.State) + w}  )
+			.attr("y", function(d){return y(d.total) - h} )
+			.text(function(d){return d.total})
+	}
+})
+
+</script>
+
+</body>
+</html> 
